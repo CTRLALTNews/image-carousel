@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Carousel</title>
+</head>
+
+<body class="h-screen w-screen flex items-center justify-center">
+  <div class="h-96 w-fit flex">
+    <div class="p-4 flex items-center">
+      <button class="p-4 bg-gray-300 rounded-full hover:bg-gray-400 transition-all " id="left">
+        &lt; </button>
+    </div>
+    <div class="w-96 h-full">
+      <img class="h-full w-full object-cover rounded shadow-lg" alt="image" id="carousel-image" />
+
+
+    </div>
+    <div class="p-4 flex items-center">
+      <button class="p-4 bg-gray-300 rounded-full hover:bg-gray-400 transition-all" id="right">
+        &gt; </button>
+    </div>
+  </div>
+  <script>
+    // Array of image sources
+    const images = [
+      "https://cdn.pixabay.com/photo/2023/08/19/13/42/water-8200502_1280.jpg",
+      "https://cdn.pixabay.com/photo/2024/01/22/20/10/bark-8526227_1280.jpg",
+      "https://cdn.pixabay.com/photo/2024/03/09/06/52/flowers-8622033_1280.jpg",
+    ];
+
+    let currentIndex = 0;
+    const carouselImage = document.getElementById("carousel-image");
+    const leftButton = document.getElementById("left");
+    const rightButton = document.getElementById("right");
+
+    function displayImage() {
+      carouselImage.src = images[currentIndex];
+    }
+
+    leftButton.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      displayImage();
+    });
+
+    rightButton.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      displayImage();
+    });
+
+    displayImage();
+  </script>
+</body>
+
+</html>
